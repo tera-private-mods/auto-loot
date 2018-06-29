@@ -1,6 +1,6 @@
 const Command = require('command'),
 	config = require('./config.json'),
-	blacklist = config.blacklist.concat(config.motes),
+	blacklist = config.blacklist.concat(config.motes, config.strongboxes),
 	trash = config.trash.concat(config.crystals, config.strongboxes)
 
 module.exports = function Loot(dispatch) {
@@ -10,7 +10,7 @@ module.exports = function Loot(dispatch) {
 		autotrash = config.modes.trash || false,
 		enabled = config.modes.easy || true
 
-	let gameId = null,
+	let gameId = -1n,
 		playerId = -1,
 		myLoc = null,
 		mounted = false,
@@ -55,7 +55,7 @@ module.exports = function Loot(dispatch) {
 		}
 	}
 
-	dispatch.hook('S_LOGIN', 9, event => { ({gameId, playerId} = event) })
+	dispatch.hook('S_LOGIN', 10, event => { ({gameId, playerId} = event) })
 
 	command.add('loot', c => {
 		if(c)
@@ -70,11 +70,11 @@ module.exports = function Loot(dispatch) {
 		loot.clear()
 	})
 
-	dispatch.hook('C_PLAYER_LOCATION', 3, event => { myLoc = event.loc })
+	dispatch.hook('C_PLAYER_LOCATION', 5, event => { myLoc = event.loc })
 	dispatch.hook('S_RETURN_TO_LOBBY', 'raw', () => { loot.clear() })
 
-	dispatch.hook('S_MOUNT_VEHICLE', 2, event => { if(event.gameId.equals(gameId)) mounted = true })
-	dispatch.hook('S_UNMOUNT_VEHICLE', 2, event => { if(event.gameId.equals(gameId)) mounted = false })
+	dispatch.hook('S_MOUNT_VEHICLE', 2, event => { if(event.gameId === gameId) mounted = true })
+	dispatch.hook('S_UNMOUNT_VEHICLE', 2, event => { if(event.gameId === gameId) mounted = false })
 
 	dispatch.hook('S_SPAWN_DROPITEM', 6, event => {
 		if(event.owners.some(owner => owner.playerId === playerId) && !blacklist.includes(event.item)) {
