@@ -1,9 +1,6 @@
 'use strict'
 
 module.exports = function Loot(mod) {
-	const motes = [...Array(26).keys()].map(i => i + 8000)
-	const blacklist = mod.settings.blacklist.concat(motes)
-
 	let location = null
 	let lootTimeout = null
 	let items = new Map()
@@ -19,14 +16,23 @@ module.exports = function Loot(mod) {
 		}
 	})
 
-	mod.game.me.on('change_zone', () => items.clear())
+	mod.game.me.on('change_zone', () => {
+		items.clear()
+	})
 
-	mod.hook('S_RETURN_TO_LOBBY', 1, () => items.clear())
+	mod.hook('S_RETURN_TO_LOBBY', 1, () => {
+		items.clear()
+	})
 
-	mod.hook('C_PLAYER_LOCATION', 5, event => location = event.loc)
+	mod.hook('C_PLAYER_LOCATION', 5, event => {
+		location = event.loc
+	})
 
 	mod.hook('S_SPAWN_DROPITEM', 6, event => {
-		if (blacklist.includes(event.item))
+		if (mod.settings.blacklist.includes(event.item))
+			return
+		// is motes?
+		if (8000 <= event.item && event.item <= 8025)
 			return
 
 		if (event.owners.some(owner => owner.playerId === mod.game.me.playerId)) {
@@ -42,7 +48,9 @@ module.exports = function Loot(mod) {
 			lootTimeout = setTimeout(tryLoot, mod.settings.interval)
 	})
 
-	mod.hook('S_DESPAWN_DROPITEM', 4, event => items.delete(event.gameId))
+	mod.hook('S_DESPAWN_DROPITEM', 4, event => {
+		items.delete(event.gameId)
+	})
 
 	function tryLoot() {
 		clearTimeout(lootTimeout)
