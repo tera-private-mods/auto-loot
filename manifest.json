@@ -1,6 +1,5 @@
 {
 	"files": {
-		"README.md": "070e56caa67c73ff1661b7b8746f4dd6122886e39518d283e5828f28e8316f92",
 		"index.js": "320e3dc2880359611dd70080b09042ded5af9e27d18b2cdc89941777ed149de4",
 		"module.json": "3b7b75938bcb79d8c2ed6d44327c5ecbe4f8cc9e23ac805a3e820174ea91f64a",
 		"settings_migrator.js": "2741bf5f523135ef038636c3f3388d8e6422aa5a6f3b713ab5dc3f96ec6ec3c0"
