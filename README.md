@@ -6,5 +6,5 @@ A TERA utility to auto loot the items on the ground, as soon as they drop or wit
 - **loot**
   - Toggles loot.
 
-- **loot auto:** 
- - Toggles auto loot.
+- **loot auto** 
+  - Toggles auto loot.
