@@ -3,9 +3,9 @@
 const DefaultSettings = {
     "enabled": true,
     "auto": false,
-	"interval": 100,
-	"throttleMax": 800,
-	"scanInterval": 400,
+    "interval": 100,
+    "throttleMax": 800,
+    "scanInterval": 400,
     "radius": 250,
     "blacklist": [98260, 98513, 98590]
 }
