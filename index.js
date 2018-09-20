@@ -12,7 +12,7 @@ module.exports = function Loot(mod) {
 		},
 		auto() {
 			mod.settings.auto = !mod.settings.auto
-			mod.command.message(`auto-loot ${mod.settings.enabled ? 'en' : 'dis'}abled`)
+			mod.command.message(`auto-loot ${mod.settings.auto ? 'en' : 'dis'}abled`)
 		}
 	})
 
