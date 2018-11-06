@@ -30,9 +30,8 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings) {
                 settings.blacklist.push(98599, 98600);
                 break;
             case 3:
-                settings.blacklist = settings.blacklist
-                    .filter(x => x !== 98513) //聖水削除
-                    .push(98654, 98655) //弓とウェイト追加
+                settings.blacklist = settings.blacklist.filter(x => x !== 98513).push(98654, 98655)
+                break;
             default:
                 settings = Object.assign(DefaultSettings, settings);
                 break;
