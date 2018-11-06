@@ -1,8 +1,8 @@
 {
 	"files": {
 		"index.js": "52248337d9222fd2ffdfc8f1741cb0642cdd477658e955db13c17679401efbe0",
-		"module.json": "70814af508e14fa5a0a33e2a3dbab0bb0ad521201d43ed681b5d15f1e84cf2ee",
-		"settings_migrator.js": "532f3242403efa77f7094bc848e449e8acd8993a9e0e467aa877355216075edb"
+		"module.json": "5f4c83783cdd190a6b60106ce5933c2bb89d76d893ce027199081e84cfc021fb",
+		"settings_migrator.js": "950a457cc0084c606cd3fdd63e2d31f85e7de6abaf2efa15a7cc19f0264d7c01"
 	},
 	"defs": {
 		"C_PLAYER_LOCATION": 5,

@@ -3,7 +3,7 @@
   "servers": ["https://raw.githubusercontent.com/valkyr1e-tera/loot/master/"],
   "options": {
     "niceName": "loot",
-    "settingsVersion": 2,
+    "settingsVersion": 3,
     "settingsFile": "config.json",
     "settingsMigrator": "settings_migrator.js"
   }

@@ -7,7 +7,7 @@ const DefaultSettings = {
     "throttleMax": 800,
     "scanInterval": 400,
     "radius": 250,
-    "blacklist": [98260, 98513, 98590, 98599, 98600]
+    "blacklist": [98260, 98590, 98599, 98600, 98654, 98655]
 }
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {
@@ -29,6 +29,10 @@ module.exports = function MigrateSettings(from_ver, to_ver, settings) {
             case 2:
                 settings.blacklist.push(98599, 98600);
                 break;
+            case 3:
+                settings.blacklist = settings.blacklist
+                    .filter(x => x !== 98513) //聖水削除
+                    .push(98654, 98655) //弓とウェイト追加
             default:
                 settings = Object.assign(DefaultSettings, settings);
                 break;
