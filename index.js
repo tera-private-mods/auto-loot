@@ -28,7 +28,7 @@ module.exports = function Loot(mod) {
 		location = event.loc
 	})
 
-	mod.hook('S_SPAWN_DROPITEM', 6, event => {
+	mod.hook('S_SPAWN_DROPITEM', 7, event => {
 		if (mod.settings.blacklist.includes(event.item))
 			return
 		// is motes?
