@@ -36,7 +36,6 @@ module.exports = function AutoLootOld(mod) {
 
     mod.hook('S_SPAWN_DROPITEM', 7, (e) => {
         if(!(config.blacklist.includes(e.item)) && (e.item < 8000 || e.item > 8025) && e.owners.some(owner => owner.playerId === mod.game.me.playerId)){
-            //items.set(e.gameId, e);
 			items.set(e.gameId, Object.assign(e, {priority: 0}));
 			if(enableAuto && !lootTimeout) tryLoot();
         }
@@ -49,7 +48,6 @@ module.exports = function AutoLootOld(mod) {
 		for(let item of [...items.values()].sort((a, b) => a.priority - b.priority)){
 			if(location.dist3D(item.loc) <= radius){
 				mod.toServer('C_TRY_LOOT_DROPITEM', 4, item);
-				//lootTimeout = setTimeout(tryLoot, interval);
 				lootTimeout = setTimeout(tryLoot, Math.min(interval * ++item.priority, throttleMax));
 				return;
 			}
