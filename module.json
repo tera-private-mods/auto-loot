@@ -2,6 +2,6 @@
   "disableAutoUpdate": false,
   "servers": ["https://raw.githubusercontent.com/TerableCoder/auto-loot/master/"],
   "options": {
-    "niceName": "auto-loot",
+    "niceName": "auto-loot"
   }
 }
