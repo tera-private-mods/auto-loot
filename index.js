@@ -1,72 +1,59 @@
-'use strict'
+'use strict';
+const config = require('./config.js');
 
-module.exports = function Loot(mod) {
-	let location = null
-	let lootTimeout = null
-	let items = new Map()
+module.exports = function AutoLootOld(mod) {
+    const cmd = mod.command || mod.require.command;
 
-	mod.command.add('loot', {
+    let enable = config.enable,
+        enableAuto = config.enableAuto,
+        interval = config.interval,
+        throttleMax = config.throttleMax,
+        scanInterval = config.scanInterval,
+        radius = config.radius;
+
+    let location = null,
+        items = new Map(),
+		lootTimeout = null;
+
+	cmd.add('loot', {
 		$default() {
-			mod.settings.enabled = !mod.settings.enabled
-			mod.command.message(`${mod.settings.enabled ? 'en' : 'dis'}abled`)
+			enable = !enable;
+			mod.command.message(`${enable ? 'en' : 'dis'}abled`);
 		},
 		auto() {
-			mod.settings.auto = !mod.settings.auto
-			mod.command.message(`auto-loot ${mod.settings.auto ? 'en' : 'dis'}abled`)
+			enableAuto = !enableAuto;
+			mod.command.message(`auto-loot ${enableAuto ? 'en' : 'dis'}abled`);
 		}
-	})
+	});
 
-	mod.game.me.on('change_zone', () => {
-		items.clear()
-	})
+    mod.game.me.on('change_zone', () => { items.clear(); });
+	
+	mod.hook('S_RETURN_TO_LOBBY', 1, () => { items.clear(); });
+    mod.hook('C_PLAYER_LOCATION', 5, (e) => { location = e.loc; });
+    mod.hook('S_SYSTEM_MESSAGE', 1, (e) => { if (e.message === '@41') return false });
+    mod.hook('C_TRY_LOOT_DROPITEM', 4, () => { if(enable && !lootTimeout) lootTimeout = setTimeout(tryLoot, interval); });
+    mod.hook('S_DESPAWN_DROPITEM', 4, (e) => { items.delete(e.gameId); });
 
-	mod.hook('S_RETURN_TO_LOBBY', 1, () => {
-		items.clear()
-	})
+    mod.hook('S_SPAWN_DROPITEM', 7, (e) => {
+        if(!(config.blacklist.includes(e.item)) && (e.item < 8000 || e.item > 8025) && e.owners.some(owner => owner.playerId === mod.game.me.playerId)){
+            //items.set(e.gameId, e);
+			items.set(e.gameId, Object.assign(e, {priority: 0}));
+			if(enableAuto && !lootTimeout) tryLoot();
+        }
+    });
 
-	mod.hook('C_PLAYER_LOCATION', 5, event => {
-		location = event.loc
-	})
-
-	mod.hook('S_SPAWN_DROPITEM', 7, event => {
-		if (mod.settings.blacklist.includes(event.item))
-			return
-		// is motes?
-		if (8000 <= event.item && event.item <= 8025)
-			return
-
-		if (event.owners.some(owner => owner.playerId === mod.game.me.playerId)) {
-			items.set(event.gameId, Object.assign(event, {priority: 0}))
-
-			if (mod.settings.auto && !lootTimeout)
-				tryLoot()
-		}
-	})
-
-	mod.hook('C_TRY_LOOT_DROPITEM', 4, () => {
-		if (mod.settings.enabled && !lootTimeout)
-			lootTimeout = setTimeout(tryLoot, mod.settings.interval)
-	})
-
-	mod.hook('S_DESPAWN_DROPITEM', 4, event => {
-		items.delete(event.gameId)
-	})
-
-	function tryLoot() {
-		clearTimeout(lootTimeout)
-		lootTimeout = null
-
-		if (!items.size || mod.game.me.mounted)
-			return
-
-		for(let item of [...items.values()].sort((a, b) => a.priority - b.priority))
-			if (location.dist3D(item.loc) <= mod.settings.radius) {
-				mod.toServer('C_TRY_LOOT_DROPITEM', 4, item)
-				lootTimeout = setTimeout(tryLoot, Math.min(mod.settings.interval * ++item.priority, mod.settings.throttleMax))
-				return
+    function tryLoot() {
+		clearTimeout(lootTimeout);
+		lootTimeout = null;
+		if(!items.size || mod.game.me.mounted) return;
+		for(let item of [...items.values()].sort((a, b) => a.priority - b.priority)){
+			if(location.dist3D(item.loc) <= radius){
+				mod.toServer('C_TRY_LOOT_DROPITEM', 4, item);
+				//lootTimeout = setTimeout(tryLoot, interval);
+				lootTimeout = setTimeout(tryLoot, Math.min(interval * ++item.priority, throttleMax));
+				return;
 			}
-
-		if (mod.settings.auto)
-			setTimeout(tryLoot, mod.settings.scanInterval)
-	}
+		}
+		if(enableAuto) setTimeout(tryLoot, scanInterval);
+    }
 }

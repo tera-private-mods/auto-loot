@@ -1,14 +1,15 @@
 {
 	"files": {
-		"index.js": "fa20fc9ddfc41b569af8ee7175c306cbb7e63aefc6be3d2bcc8f98c6298a2cd1",
-		"module.json": "5f4c83783cdd190a6b60106ce5933c2bb89d76d893ce027199081e84cfc021fb",
-		"settings_migrator.js": "1fc8ca27d4cde2c3a0cfbb8cbc3cbb5ea6c5c0c8fce45f6a9d6af88b4d044085"
+		"index.js": "5d268b228592955224a633de74225685f2e1a98a9c4824ed6517ce5abef65f07",
+		"manifest.json": "6b07697513fcf79c4e4bee592f45582426d2b382fb241f0174189e111dff9a59",
+		"module.json": "a01a5b00c3e5c836b22c66112c65845fab23600f96dc6da84e2be44fd4b39890"
 	},
 	"defs": {
 		"C_PLAYER_LOCATION": 5,
 		"C_TRY_LOOT_DROPITEM": 4,
 		"S_DESPAWN_DROPITEM": 4,
 		"S_RETURN_TO_LOBBY": 1,
-		"S_SPAWN_DROPITEM": 7
+		"S_SPAWN_DROPITEM": 7,
+		"S_SYSTEM_MESSAGE": 1
 	}
 }

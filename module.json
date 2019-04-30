@@ -1,10 +1,7 @@
 {
   "disableAutoUpdate": false,
-  "servers": ["https://raw.githubusercontent.com/valkyr1e-tera/loot/master/"],
+  "servers": ["https://raw.githubusercontent.com/TerableCoder/auto-loot/master/"],
   "options": {
-    "niceName": "loot",
-    "settingsVersion": 3,
-    "settingsFile": "config.json",
-    "settingsMigrator": "settings_migrator.js"
+    "niceName": "auto-loot",
   }
 }
