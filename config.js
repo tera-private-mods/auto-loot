@@ -16,7 +16,7 @@ module.exports = {
 		//98513, // Essence
 		//98590, // Veilthroch
 
-        //98599, // Devil's Claws
+        98599, // Devil's Claws
         //98600, // Dragon Skull
 		
 		88784, // Powerful Transcendent Mask
@@ -54,8 +54,8 @@ module.exports = {
 		88841, // Bahaar's Handwear Amplifier
 		88842, // Bahaar's Footwear Amplifier
 		
-		98667, // Skill Optimization Scroll I
-		98669, // Skill Optimization Scroll II
+		//98667, // Skill Optimization Scroll I
+		//98669, // Skill Optimization Scroll II
 		
 		//89040, // yellow relic
 		//89020, // blue power relic
@@ -68,7 +68,6 @@ module.exports = {
 		//89140, // yellow halidom
 		//89120, // blue power halidom
 		//89100 // green power halidom
-		
 		
     ]
 }
