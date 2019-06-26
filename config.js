@@ -2,21 +2,21 @@ module.exports = {
     enable: true,
     enableAuto: true,
 	interval: 30,
-	throttleMax: 90,
-	scanInterval: 100,
-	radius: 250,
+	throttleMax: 45,
+	scanInterval: 60,
+	radius: 180,
 
     blacklist: [
         7214, // Scroll of Resurrection
 		//91344, // Fashion Coupon
-        139113, 166718, 213026, // 행운의 상자 (K TERA)
-        169886, 169887, 169888, 169889, 169890, 169891, // Locked ???? Strongbox
+        //139113, 166718, 213026, // 행운의 상자 (K TERA)
+        //169886, 169887, 169888, 169889, 169890, 169891, // Locked ???? Strongbox
 
 		//98512, // Pansophic Ash	
 		//98513, // Essence
 		//98590, // Veilthroch
 
-        98599, // Devil's Claws
+        //98599, // Devil's Claws
         //98600, // Dragon Skull
 		
 		88784, // Powerful Transcendent Mask
@@ -68,6 +68,9 @@ module.exports = {
 		//89140, // yellow halidom
 		//89120, // blue power halidom
 		//89100 // green power halidom
+		
+		98671, // Refined Lepidoptera Crystal Dust (EAR)
+		98672, // Refined Lepidoptera Crystal Powder (RING)
 		
     ]
 }
