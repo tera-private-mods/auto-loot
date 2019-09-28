@@ -34,8 +34,8 @@ module.exports = function AutoLootOld(mod) {
     mod.hook('C_TRY_LOOT_DROPITEM', 4, () => { if(enable && !lootTimeout) lootTimeout = setTimeout(tryLoot, interval); });
     mod.hook('S_DESPAWN_DROPITEM', 4, (e) => { items.delete(e.gameId); });
 
-    mod.hook('S_SPAWN_DROPITEM', 7, (e) => {
-        if(!(config.blacklist.includes(e.item)) && (e.item < 8000 || e.item > 8025) && e.owners.some(owner => owner.playerId === mod.game.me.playerId)){
+    mod.hook('S_SPAWN_DROPITEM', 8, (e) => {
+        if(!(config.blacklist.includes(e.item)) && (e.item < 8000 || e.item > 8025) && e.owners.some(owner => owner === mod.game.me.playerId)){
 			items.set(e.gameId, Object.assign(e, {priority: 0}));
 			if(enableAuto && !lootTimeout) tryLoot();
         }
@@ -47,7 +47,7 @@ module.exports = function AutoLootOld(mod) {
 		if(!items.size || mod.game.me.mounted) return;
 		for(let item of [...items.values()].sort((a, b) => a.priority - b.priority)){
 			if(location.dist3D(item.loc) <= radius){
-				mod.toServer('C_TRY_LOOT_DROPITEM', 4, item);
+				mod.send('C_TRY_LOOT_DROPITEM', 4, { gameId: item.gameId });
 				lootTimeout = setTimeout(tryLoot, Math.min(interval * ++item.priority, throttleMax));
 				return;
 			}

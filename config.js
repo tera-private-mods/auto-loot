@@ -44,7 +44,7 @@ module.exports = {
 		88835, // Ring Amplifier II     
 		
 		88837, // Accessory Amplifier Coin
-      
+		
 		//98653, // Supreme Metal
 		//98654, // Springy Draco Limb
 		//98655, // Weight Pendulum

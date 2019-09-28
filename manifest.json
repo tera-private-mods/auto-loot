@@ -2,9 +2,9 @@
 	"files": {
 		"config.js": {
 			"overwrite": false,
-			"hash": "6c1cc48538953dd579f592ebd338ab0312b026c1f9438e4cfbed64b652d9e54e"
+			"hash": "7ad19b8a78f5292059f2d31a9974029d3c71d73ab14d99b75701afbe88345d7b"
 		},
-		"index.js": "2e98aaa53b1a6d7335fdd571ac094053de218518ffe75fc0974b2b0ddf5a24af",
+		"index.js": "5658ea3236904b0b23a7339007b6032f5c67521ca14a5196a6a3c0e62605e8e5",
 		"module.json": "4ed019900213d703cb30ad1bb47f14244abe9dadfc618869ce2c8763d59f3188"
 	},
 	"defs": {
@@ -12,7 +12,7 @@
 		"C_TRY_LOOT_DROPITEM": 4,
 		"S_DESPAWN_DROPITEM": 4,
 		"S_RETURN_TO_LOBBY": 1,
-		"S_SPAWN_DROPITEM": 7,
+		"S_SPAWN_DROPITEM": 8,
 		"S_SYSTEM_MESSAGE": 1
 	}
 }
