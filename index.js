@@ -35,7 +35,7 @@ module.exports = function AutoLootOld(mod) {
     mod.hook('S_DESPAWN_DROPITEM', 4, (e) => { items.delete(e.gameId); });
 
     mod.hook('S_SPAWN_DROPITEM', 8, (e) => {
-        if(!(config.blacklist.includes(e.item)) && (e.item < 8000 || e.item > 8025) && e.owners.some(owner => owner === mod.game.me.playerId)){
+        if(!(config.blacklist.includes(e.item)) && e.owners.some(owner => owner === mod.game.me.playerId)){
 			items.set(e.gameId, Object.assign(e, {priority: 0}));
 			if(enableAuto && !lootTimeout) tryLoot();
         }
