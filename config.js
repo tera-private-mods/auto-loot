@@ -71,6 +71,11 @@ module.exports = {
 		
 		98671, // Refined Lepidoptera Crystal Dust (EAR)
 		98672, // Refined Lepidoptera Crystal Powder (RING)
+		46701, // Inversion Mote
+		602172, // Argon Priest Essence (Corrupted Skynest)
+		602174, // Argon Priest Essence (Corrupted Skynest)
+		602175, // Argon Priest Essence (Corrupted Skynest)
+
 		
     ]
 }

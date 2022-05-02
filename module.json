@@ -1,7 +1,9 @@
 {
-  "disableAutoUpdate": false,
-  "servers": ["https://raw.githubusercontent.com/TerableCoder/auto-loot/master/"],
-  "options": {
-    "niceName": "auto-loot"
-  }
+    "disableAutoUpdate": false,
+    "servers": ["https://raw.githubusercontent.com/tera-private-mods/auto-loot/master/"],
+    "options": {
+        "niceName": "auto-loot"
+    },
+    "name": "auto-loot",
+    "description": "Description goes here."
 }
