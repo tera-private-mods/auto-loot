@@ -2,8 +2,8 @@
     "disableAutoUpdate": false,
     "servers": ["https://raw.githubusercontent.com/tera-private-mods/auto-loot/master/"],
     "options": {
-        "niceName": "auto-loot"
+        "niceName": "Auto Loot"
     },
     "name": "auto-loot",
-    "description": "Description goes here."
+    "description": "Auto loot module."
 }
