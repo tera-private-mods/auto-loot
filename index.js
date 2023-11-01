@@ -29,6 +29,7 @@ module.exports = function AutoLootOld(mod) {
     mod.game.me.on('change_zone', () => { items.clear(); });
 	
 	mod.hook('S_RETURN_TO_LOBBY', 1, () => { items.clear(); });
+    mod.hook('S_SPAWN_ME', 3, (e) => { location = e.loc; });
     mod.hook('C_PLAYER_LOCATION', 5, (e) => { location = e.loc; });
     mod.hook('S_SYSTEM_MESSAGE', 1, (e) => { if (e.message === '@41') return false });
     mod.hook('C_TRY_LOOT_DROPITEM', 4, () => { if(enable && !lootTimeout) lootTimeout = setTimeout(tryLoot, interval); });
