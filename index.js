@@ -45,7 +45,7 @@ module.exports = function AutoLootOld(mod) {
     function tryLoot() {
 		clearTimeout(lootTimeout);
 		lootTimeout = null;
-		if(!items.size || mod.game.me.mounted) return;
+		if(!items.size || !mod.game.me || mod.game.me.mounted) return;
 		for(let item of [...items.values()].sort((a, b) => a.priority - b.priority)){
 			if(location.dist3D(item.loc) <= radius){
 				mod.send('C_TRY_LOOT_DROPITEM', 4, { gameId: item.gameId });
